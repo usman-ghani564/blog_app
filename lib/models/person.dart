@@ -1,21 +1,34 @@
-class Person {
-  String _id;
-  String _firstName;
-  String _lastName;
-  DateTime _dob;
-  String _gender;
+import 'package:flutter/foundation.dart';
 
-  Person();
+enum Gender {
+  male,
+  female,
+  other,
+}
+
+class Person {
+  @required
+  String _id;
+  @required
+  String _firstName;
+  @required
+  String _lastName;
+  @required
+  DateTime _dob;
+  @required
+  Gender _gender;
+
+  Person(this._id, this._firstName, this._lastName, this._dob, this._gender);
 
   set setID(String id) => this._id = id;
   set setFirstName(String fn) => this._firstName = fn;
   set setLastName(String ln) => this._lastName = ln;
   set setDoB(DateTime dob) => this._dob = dob;
-  set setGender(String gdr) => this._gender = gdr;
+  set setGender(Gender gdr) => this._gender = gdr;
 
   String get getID => this._id;
   String get getFirstName => this._firstName;
   String get getLastName => this._lastName;
   DateTime get getDoB => this._dob;
-  String get getGender => this._gender;
+  Gender get getGender => this._gender;
 }

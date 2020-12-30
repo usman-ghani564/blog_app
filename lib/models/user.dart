@@ -1,10 +1,18 @@
+import 'package:flutter/foundation.dart';
+
 import '../models/person.dart';
 import '../models/blog.dart';
 
 class User extends Person {
   List<Blog> _blogs;
 
-  User();
+  User(
+      {@required String id,
+      @required String firstName,
+      @required String lastName,
+      @required DateTime dob,
+      @required Gender gen})
+      : super(id, firstName, lastName, dob, gen);
 
   List<Blog> get getBlogs {
     return [..._blogs];

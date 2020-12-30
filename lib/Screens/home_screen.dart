@@ -1,10 +1,18 @@
+import 'package:blog_app/Widgets/blog_item.dart';
+import 'package:blog_app/models/image_url.dart';
+
+import '../Providers/blog_provider.dart';
+import '../Providers/user_provider.dart';
 import '../Widgets/category_item_widget.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final userData = Provider.of<UserProvider>(context);
+    final blogData = Provider.of<BlogProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Blogged'),
@@ -68,6 +76,27 @@ class HomeScreen extends StatelessWidget {
                   color: Colors.grey.shade500),
             ),
           ),
+          Container(
+            height: 400,
+            child: ListView.builder(
+              itemBuilder: (ctx, index) {
+                return BlogItemWidget(
+                  firstName: userData
+                      .getUserById(blogData.getAllBlogs[index].getUserID)
+                      .getFirstName,
+                  lastName: userData
+                      .getUserById(blogData.getAllBlogs[index].getUserID)
+                      .getLastName,
+                  blogTitle: blogData.getAllBlogs[index].getBlogTitle,
+                  blogPostTime: blogData.getAllBlogs[index].getPostingDate,
+                  imageUrl: ImageUrl.getImageUrlByCategory(
+                      blogData.getAllBlogs[index].getCategory),
+                  userImage: ImageUrl.usersImageUrl[index],
+                );
+              },
+              itemCount: blogData.getAllBlogs.length,
+            ),
+          )
         ],
       ),
     );
