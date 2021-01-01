@@ -9,12 +9,6 @@ class ImageUrl {
     {Category.travel: 'assets/images/pattern3.jpg'},
   ];
 
-  static final List<String> usersImageUrl = [
-    'assets/images/usman.png',
-    'assets/images/husnain.jpg',
-    'assets/images/ayesha.jpg',
-  ];
-
   static String getImageUrlByCategory(Category c) {
     String cat;
     imageUrl.forEach((map) {

@@ -6,13 +6,14 @@ import '../models/blog.dart';
 class User extends Person {
   List<Blog> _blogs;
 
-  User(
-      {@required String id,
-      @required String firstName,
-      @required String lastName,
-      @required DateTime dob,
-      @required Gender gen})
-      : super(id, firstName, lastName, dob, gen);
+  User({
+    @required String id,
+    @required String firstName,
+    @required String lastName,
+    @required DateTime dob,
+    @required Gender gen,
+    String imageUrl,
+  }) : super(id, firstName, lastName, dob, gen, imageUrl);
 
   List<Blog> get getBlogs {
     return [..._blogs];

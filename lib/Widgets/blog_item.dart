@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class BlogItemWidget extends StatelessWidget {
+  final String id;
   final String firstName;
   final String lastName;
   final String blogTitle;
@@ -11,6 +12,7 @@ class BlogItemWidget extends StatelessWidget {
   final String userImage;
 
   BlogItemWidget({
+    this.id,
     this.firstName,
     this.lastName,
     this.blogTitle,
@@ -30,7 +32,8 @@ class BlogItemWidget extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Navigator.of(context).pushNamed(BlogScreen.routeName);
+              Navigator.of(context)
+                  .pushNamed(BlogScreen.routeName, arguments: id);
             },
             splashColor: Colors.grey,
             child: Container(
@@ -76,14 +79,19 @@ class BlogItemWidget extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    left: 10,
                     top: 55,
-                    child: Text(
-                      blogTitle,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                    left: 10,
+                    child: Container(
+                      height: 25,
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      child: Text(
+                        blogTitle,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ),
                   Positioned(

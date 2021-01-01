@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
         title: Text('Blogged'),
         actions: [
           IconButton(
-            icon: Icon(Icons.more_vert),
+            icon: const Icon(Icons.more_vert),
             onPressed: () {},
           )
         ],
@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Container(
-              padding: EdgeInsets.only(left: 10),
+              padding: const EdgeInsets.only(left: 10),
               height: 70,
               child: ListView(
                 scrollDirection: Axis.horizontal,
@@ -77,10 +77,11 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Container(
-            height: 400,
+            height: MediaQuery.of(context).size.height * 0.6,
             child: ListView.builder(
               itemBuilder: (ctx, index) {
                 return BlogItemWidget(
+                  id: blogData.getAllBlogs[index].getID,
                   firstName: userData
                       .getUserById(blogData.getAllBlogs[index].getUserID)
                       .getFirstName,
@@ -91,7 +92,9 @@ class HomeScreen extends StatelessWidget {
                   blogPostTime: blogData.getAllBlogs[index].getPostingDate,
                   imageUrl: ImageUrl.getImageUrlByCategory(
                       blogData.getAllBlogs[index].getCategory),
-                  userImage: ImageUrl.usersImageUrl[index],
+                  userImage: userData
+                      .getUserById(blogData.getAllBlogs[index].getUserID)
+                      .getImageUrl,
                 );
               },
               itemCount: blogData.getAllBlogs.length,
